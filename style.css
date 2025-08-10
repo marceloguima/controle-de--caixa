@@ -1,0 +1,168 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+nav{
+    width: 250px;
+    height: 100%;
+    background: #393f41;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.saldo{
+    width: 70%;
+    height: 60px;
+    background: #dae4e7;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1.3rem;
+    margin-bottom: 200px;
+
+}
+
+ul{
+    width: 100%;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+li{
+    list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: ease .3s;
+}
+
+li:hover{
+    background: #525b5e;
+}
+
+.active{
+    background: #525b5e;
+   
+}
+
+li button{
+    width: 60%;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+form{
+    width: 50%;
+    height: 70%;
+    border: solid 2px #a3aaac;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+            box-shadow: 1px 3px 5px #393f41;
+
+} 
+
+.campo{
+    width: 60%;
+    height: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+input, select{
+    background: #f4f6f7;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 10px;
+        box-shadow: 1px 3px 5px #393f41;
+
+}
+
+.botoes{
+    width: 60%;
+    display: flex;
+    gap: 20px;
+}
+
+.botoes button{
+    width:250px ;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    box-shadow: 1px 3px 5px #393f41;
+}
+
+.btn-add{
+    background: #2993F5;
+    color: #fff;
+}
+
+.btn-cancelar{
+    background:#E2E8EE ;
+}
+
+/* *******************modal escolha filtro */
+
+.modal-filtrar{
+    width: 200px ;
+    height:280px;
+     box-shadow: 1px 3px 5px #393f41;
+     background: #fff;
+     border-radius: 10px;
+     display: none;
+     flex-direction: column;
+     gap: 20px;
+     padding: 10px;
+     position: absolute;
+     top: 250px;
+     left: 250px;
+}
+
+.active{
+    display: flex;
+}
+
+.input-modal{
+    display: flex;
+    flex-direction: column;
+}
+
+.buscar{
+    width: 100%;
+    padding: 10px;
+    background: #2993F5;
+    color: #fff;
+    font-size: 1rem;
+     box-shadow: 1px 3px 5px #393f41;
+     border: none;
+     border-radius: 10px;
+
+}
