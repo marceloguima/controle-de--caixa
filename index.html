@@ -11,47 +11,15 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./styles/global.css" />
         <title>Document</title>
     </head>
     <body>
         <div class="container">
             <nav>
-                <div class="saldo">
-                    <!-- <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-eye-fill"
-                        viewBox="0 0 16 16"
-                    >
-                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-                        <path
-                            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"
-                        />
-                    </svg> -->
-
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-eye-slash-fill"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"
-                        />
-                        <path
-                            d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"
-                        />
-                    </svg>
-                    <p>R$: 2000</p>
-                </div>
                 <ul>
-                    <li class="active">
-                        <button>
+                    <li class="item active">
+                        <button onclick="removeModal()">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
@@ -67,7 +35,7 @@
                             Início
                         </button>
                     </li>
-                    <li>
+                    <li class="item" onclick="showModal()">
                         <button>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +52,8 @@
                             Filtros
                         </button>
                     </li>
-                    <li>
-                        <button>
+                    <li class="item">
+                        <button onclick="showRelatorio()">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
@@ -107,37 +75,55 @@
                     <h3>Filtrar</h3>
                     <div class="input-modal">
                         <label for="data">Por data</label>
-                        <input type="date">
+                        <input type="date" />
                     </div>
                     <div class="input-modal">
                         <label for="pagamento">Por meio de pagamento</label>
                         <select name="" id="pagamento">
                             <option value="Pix">Pix</option>
-                        <option value="Crédito">Crédito</option>
-                        <option value="Débito">Débito</option>
-                        <option value="Dinheiro">Dinheiro</option>
+                            <option value="Crédito">Crédito</option>
+                            <option value="Débito">Débito</option>
+                            <option value="Dinheiro">Dinheiro</option>
                         </select>
                     </div>
                     <button class="buscar">Buscar</button>
                 </div>
             </nav>
 
-            <form>
+            <div class="overlay"></div>
+
+            <form class="form" id="form">
+                <p class="mensagem-sucesso"></p>
                 <div class="campo">
                     <label for="tipo">Tipo de serviço</label>
-                    <input type="text" placeholder="Informe o serviço" />
+                    <input
+                        class="servico"
+                        type="text"
+                        placeholder="Informe o serviço"
+                        required
+                    />
                 </div>
                 <div class="campo">
                     <label for="tipo">Valor</label>
-                    <input type="number" placeholder="Informe o valor" />
+                    <input
+                        class="valor-servico"
+                        type="number"
+                        placeholder="Informe o valor"
+                        required
+                    />
                 </div>
                 <div class="campo">
                     <label for="data">Data</label>
-                    <input type="date" />
+                    <input class="data-servico" type="date" />
+                    
                 </div>
                 <div class="campo">
                     <label for="forma-pagamento">Forma de pagamento</label>
                     <select name="" id="forma-pagamento">
+                        <option value="" disabled>
+                            Escolha a forma de pagamento
+                        </option>
+
                         <option value="Pix">Pix</option>
                         <option value="Crédito">Crédito</option>
                         <option value="Débito">Débito</option>
@@ -146,12 +132,31 @@
                 </div>
 
                 <div class="botoes">
-                    <button class="btn-add">Adicionar</button>
+                    <button type="submit" class="btn-add">Adicionar</button>
                     <button class="btn-cancelar">Cancelar</button>
                 </div>
             </form>
+
+            <!-- **************************modal relatório***************************** -->
+
+            <div class="relatorio">
+                <div class="title-saldo">
+                    <h1>Meu relatório</h1>
+                    <div class="saldo">
+                        <p class="saldo"></p>
+                    </div>
+                </div>
+                <div class="vendas">
+                    <!-- <div class="venda">
+                        <p>Social</p>
+                        <p>05/07/2025</p>
+                        <p>R$: 20,00</p>
+                        <p>Crédito</p>
+                    </div> -->
+                </div>
+            </div>
         </div>
 
-        <script src="./app.js"></script>
+        <script src="./scripts/app.js"></script>
     </body>
 </html>
