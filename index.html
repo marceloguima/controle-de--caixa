@@ -11,6 +11,15 @@
             rel="stylesheet"
         />
 
+        <!-- font awsome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+            integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
         <link rel="stylesheet" href="./styles/global.css" />
         <title>Document</title>
     </head>
@@ -18,8 +27,8 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li class="item active">
-                        <button onclick="removeModal()">
+                    <li class="item active li-home">
+                        <button  onclick="removeModal()">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
@@ -53,7 +62,7 @@
                         </button>
                     </li>
                     <li class="item">
-                        <button onclick="showRelatorio()">
+                        <button class="btn-relatorio" onclick="showRelatorio()">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
@@ -70,25 +79,29 @@
                         </button>
                     </li>
                 </ul>
-
-                <div class="modal-filtrar">
-                    <h3>Filtrar</h3>
-                    <div class="input-modal">
-                        <label for="data">Por data</label>
-                        <input type="date" />
-                    </div>
-                    <div class="input-modal">
-                        <label for="pagamento">Por meio de pagamento</label>
-                        <select name="" id="pagamento">
-                            <option value="Pix">Pix</option>
-                            <option value="Crédito">Crédito</option>
-                            <option value="Débito">Débito</option>
-                            <option value="Dinheiro">Dinheiro</option>
-                        </select>
-                    </div>
-                    <button class="buscar">Buscar</button>
-                </div>
             </nav>
+            <div class="modal-filtrar">
+                <div class="title-btn-fechar">
+                    <h3>Filtrar</h3>
+                    <button class="fechar" onclick="removeModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="input-modal">
+                    <label for="data">Por data</label>
+                    <input type="date" />
+                </div>
+                <div class="input-modal">
+                    <label for="pagamento">Por meio de pagamento</label>
+                    <select name="" id="pagamento">
+                        <option value="Pix">Pix</option>
+                        <option value="Crédito">Crédito</option>
+                        <option value="Débito">Débito</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+                <button class="buscar">Buscar</button>
+            </div>
 
             <div class="overlay"></div>
 
@@ -115,7 +128,6 @@
                 <div class="campo">
                     <label for="data">Data</label>
                     <input class="data-servico" type="date" />
-                    
                 </div>
                 <div class="campo">
                     <label for="forma-pagamento">Forma de pagamento</label>
@@ -142,9 +154,13 @@
             <div class="relatorio">
                 <div class="title-saldo">
                     <h1>Meu relatório</h1>
+                    <p class="msg-relatorio"></p>
                     <div class="saldo">
                         <p class="saldo"></p>
                     </div>
+                    <button class="fechar" onclick="removeModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
                 <div class="vendas">
                     <!-- <div class="venda">
