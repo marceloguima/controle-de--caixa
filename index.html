@@ -28,7 +28,7 @@
             <nav>
                 <ul>
                     <li class="item active li-home">
-                        <button  onclick="removeModal()">
+                        <button onclick="removeModal()">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
@@ -106,7 +106,6 @@
             <div class="overlay"></div>
 
             <form class="form" id="form">
-                <p class="mensagem-sucesso"></p>
                 <div class="campo">
                     <label for="tipo">Tipo de serviço</label>
                     <input
@@ -148,14 +147,24 @@
                 </div>
             </form>
 
+            <div class="containerFedbackSucesso">
+                <!-- <p class="mensagem-sucesso">Serviço adicionado com sucesso!</p>
+                <div class="sucesso">
+                    <p>Modelo: <span>Social</span></p>
+                    <p>Data: <span>05/07/2025</span></p>
+                    <p>Valor R$: <span>20,00</span></p>
+                    <p>Forma de pagamento: <span>Crédito</span></p>
+                </div> -->
+            </div>
+
             <!-- **************************modal relatório***************************** -->
 
             <div class="relatorio">
                 <div class="title-saldo">
                     <h1>Meu relatório</h1>
                     <p class="msg-relatorio"></p>
-                    <div class="saldo">
-                        <p class="saldo"></p>
+                    <div class="saldo-div">
+                        <p class="saldo_saldo"></p>
                     </div>
                     <button class="fechar" onclick="removeModal()">
                         <i class="fa-solid fa-xmark"></i>

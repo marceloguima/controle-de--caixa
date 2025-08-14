@@ -4,12 +4,13 @@ const itensLi = document.querySelectorAll(".item");
 const overlay = document.querySelector(".overlay");
 const relatorio = document.querySelector(".relatorio");
 
+const botaoAdicionar = document.querySelector(".btn-add");
+
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    criaCampoServico();
+    criaRelatorio();
     limpaCampo();
-    definirDataAtualComoPadrao()
-
+    definirDataAtualComoPadrao();
 });
 
 const modal = document.querySelector(".modal-filtrar");
@@ -55,7 +56,6 @@ const servico = document.querySelector(".servico");
 const dataServico = document.querySelector(".data-servico");
 const valorServico = document.querySelector(".valor-servico");
 const formaPagamento = document.getElementById("forma-pagamento");
-const botaoAdicionar = document.querySelector(".btn-add");
 const btnCancelar = document.querySelector(".btn-cancelar");
 
 let listaServicos = [];
@@ -70,10 +70,6 @@ const formatarDataParaExibicao = (dataISO) => {
     return `${dia}/${mes}/${ano}`;
 };
 
-const mensagem = document.querySelector(".mensagem-sucesso");
-const campoSaldo = document.querySelector(".saldo");
-let saldoTotal = 0;
-
 const definirDataAtualComoPadrao = () => {
     const hoje = new Date();
     hoje.setMinutes(hoje.getMinutes() - hoje.getTimezoneOffset());
@@ -83,7 +79,10 @@ const definirDataAtualComoPadrao = () => {
 
 definirDataAtualComoPadrao();
 
-const criaCampoServico = () => {
+const campoSaldo = document.querySelector(".saldo_saldo");
+let saldoTotal = 0;
+
+const criaRelatorio = () => {
     const tipoServico = servico.value.trim();
     const data = dataServico.value.trim();
     const valor = parseFloat(valorServico.value.trim());
@@ -97,6 +96,7 @@ const criaCampoServico = () => {
         forma: formaPag,
     };
 
+   
     listaServicos.push(novoServico);
 
     saldoTotal += valor;
@@ -104,19 +104,37 @@ const criaCampoServico = () => {
         style: "currency",
         currency: "BRL",
     })}`;
-    mensagem.textContent = "Serviço cadastrado com sucesso";
-    setTimeout(() => {
-        mensagem.textContent = "";
-    }, 2000);
 
-    renderizaServico(novoServico);
-    definirDataAtualComoPadrao();
+    
+        renderizaServico(novoServico);
+        definirDataAtualComoPadrao();
 };
 
+// salva no localStorage
+const salvaServicoStorage = () => {
+    localStorage.setItem("servicos", JSON.stringify(listaServicos));
+};
+
+// carrega dados do storage ao carregar a página
+const carregaDados = () => {
+    const dados = localStorage.getItem("servicos");
+
+    if (dados) {
+        listaServicos = JSON.parse(dados);
+        listaServicos.forEach((servico) => {
+            renderizaServico(servico);
+        });
+    }
+};
+
+
 let containerVendas = document.querySelector(".vendas");
+const campoFedback = document.querySelector(".containerFedbackSucesso");
 
 const renderizaServico = (servico) => {
     const dataFormatada = formatarDataParaExibicao(servico.data);
+
+    
 
     containerVendas.innerHTML += `<div class="venda">
                         <p>${servico.tipo}</p>
@@ -127,6 +145,40 @@ const renderizaServico = (servico) => {
                          })}</p>
                         <p class="forma-pag">${servico.forma}</p>
                     </div>`;
+
+    // mostra um card com o serviço cadastrado
+    campoFedback.innerHTML = ` <p class="mensagem-sucesso"></p>
+                <div class="sucesso">
+                    <p>Modelo: <span>${servico.tipo}</span></p>
+                    <p>Data: <span>${dataFormatada}</span></p>
+                        <p>Valor R$: <span>${servico.valor.toLocaleString(
+                            "pt-br",
+                            {
+                                style: "currency",
+                                currency: "BRL",
+                            }
+                        )}</span></p>
+                    <p>Forma de pagamento: <span>${servico.forma}</span></p>
+                  
+                </div>`;
+
+
+  
+
+     const mensagemFedback = document.querySelector(".mensagem-sucesso");
+
+     mensagemFedback.textContent = "Serviço cadastrado com sucesso!";
+     setTimeout(() => {
+         mensagemFedback.textContent = "Último serviço cadastrado";
+     },2000);
+        
+    
+  
+
+    salvaServicoStorage();
+
+   
+
 };
 
 const limpaCampo = () => {
@@ -135,3 +187,7 @@ const limpaCampo = () => {
     formaPagamento.value = "";
     dataServico.value = "";
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+    carregaDados();
+});
